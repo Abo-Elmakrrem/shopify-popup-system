@@ -1,0 +1,72 @@
+
+/* Custom Card Section (Meraki) */
+.custom-card-section {
+  padding: 24px 0;
+}
+
+.custom-card {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  align-items: start;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 16px;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  background: #fff;
+}
+
+@media (min-width: 768px) {
+  .custom-card {
+    grid-template-columns: 1fr 1fr;
+    padding: 24px;
+    gap: 24px;
+  }
+}
+
+.custom-card__image img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+}
+
+.custom-card__badge {
+  display: inline-block;
+  margin-bottom: 8px;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #155e75;
+  background: #e0f2fe;
+  border: 1px solid #bae6fd;
+  border-radius: 999px;
+}
+
+.custom-card__title {
+  margin: 8px 0;
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+.custom-card__description {
+  margin-bottom: 16px;
+  color: #555;
+}
+
+.custom-card__button {
+  display: inline-block;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: #111827;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform .2s ease, opacity .2s ease;
+}
+
+.custom-card__button:hover {
+  transform: translateY(-1px);
+  opacity: 0.92;
+}

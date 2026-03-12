@@ -1,0 +1,61 @@
+<section id="section-{{ section.id }}" class="custom-card-section">
+  <div class="custom-card">
+    {% if section.settings.image != blank %}
+      <div class="custom-card__image">
+        <img
+          src="{{ section.settings.image | image_url: width: 1200 }}"
+          srcset="
+            {{ section.settings.image | image_url: width: 400 }} 400w,
+            {{ section.settings.image | image_url: width: 800 }} 800w,
+            {{ section.settings.image | image_url: width: 1200 }} 1200w
+          "
+          sizes="(max-width: 768px) 100vw, 600px"
+          alt="{{ section.settings.image_alt | default: section.settings.title }}"
+          loading="lazy"
+        >
+      </div>
+    {% endif %}
+
+    <div class="custom-card__content">
+      {% if section.settings.title != blank %}
+        <h2 class="custom-card__title">{{ section.settings.title }}</h2>
+      {% endif %}
+
+      {% if section.settings.description != blank %}
+        <p class="custom-card__description">{{ section.settings.description }}</p>
+      {% endif %}
+
+      {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+        <a
+          class="custom-card__button"
+          href="{{ section.settings.button_link }}"
+          {% if section.settings.button_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+        >
+          {{ section.settings.button_label }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+
+  {%- comment -%} Assets: CSS is fine via stylesheet_tag; JS with defer for performance {%- endcomment -%}
+  {{ 'custom-card.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'custom-card.js' | asset_url }}" defer="defer"></script>
+</section>
+
+{% schema %}
+{
+  "name": "Custom Card",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "text", "id": "image_alt", "label": "Image alt text" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Your card title" },
+    { "type": "textarea", "id": "description", "label": "Description", "default": "Short description…" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Shop now" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    { "type": "checkbox", "id": "button_new_tab", "label": "Open in new tab", "default": false }
+  ],
+  "presets": [
+    { "name": "Custom Card" }
+  ]
+}
+{% endschema %}
